@@ -204,6 +204,30 @@ class EcommerceDataLoader:
         
         return self.processed_data
     
+    def get_order_status_distribution(self, year: int) -> pd.Series:
+        """
+        Return the proportion of orders in each status for a given year.
+
+        Covers all orders (not just delivered ones), making it useful for
+        understanding fulfillment success rates and cancellation levels.
+
+        Args:
+            year: Year to analyze (based on order_purchase_timestamp).
+
+        Returns:
+            Series indexed by order_status, values are proportions (0-1),
+            sorted from most to least frequent.
+
+        Raises:
+            ValueError: If orders data has not been loaded yet.
+        """
+        if "orders" not in self.processed_data:
+            raise ValueError("Orders data not loaded. Call load_raw_data() first.")
+
+        orders = self.processed_data["orders"]
+        year_orders = orders[orders["purchase_year"] == year]
+        return year_orders["order_status"].value_counts(normalize=True)
+
     def get_data_summary(self) -> Dict[str, Dict]:
         """
         Get summary statistics for all datasets.

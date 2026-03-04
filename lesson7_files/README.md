@@ -97,16 +97,16 @@ data_analysis/
    ```
 
 2. **Navigate the interface**:
-   - Use the **year filter** in the top-right to select analysis period
-   - View **KPI cards** showing key metrics with trend indicators
-   - Explore **interactive charts** in the 2x2 grid layout
+   - Use the **Year** and **Month** filters in the top-right to select the analysis period
+   - View **KPI cards** showing key metrics with trend indicators vs the prior year
+   - Explore **interactive charts** in the 2×2 grid layout
    - Monitor **customer experience metrics** in the bottom row
 
 3. **Dashboard Features**:
-   - **Real-time filtering**: All charts update automatically when year is changed
-   - **Professional styling**: Clean, business-ready interface
-   - **Trend indicators**: Green/red arrows showing performance changes
-   - **Formatted values**: Currency displayed as $300K, $2M for readability
+   - **Real-time filtering**: All charts update automatically when filters change
+   - **Professional styling**: Clean card-based layout with uniform heights per row
+   - **Trend indicators**: ▲/▼ arrows with green/red coloring; two decimal places
+   - **Compact currency**: Values displayed as $300K or $2M for readability
 
 ### Notebook Analysis
 
@@ -283,25 +283,26 @@ def plot_custom_metric(self, data):
 ## Dashboard Features
 
 ### Layout Structure
-- **Header**: Title with year selection filter (applies globally)
-- **KPI Row**: 4 metric cards with trend indicators
+- **Header**: Title (left) + year and month filters (right) — filters apply globally
+- **KPI Row**: 4 metric cards with uniform height
   - Total Revenue, Monthly Growth, Average Order Value, Total Orders
-  - Color-coded trends (green for positive, red for negative)
-- **Charts Grid**: 2x2 interactive visualization layout
-  - Revenue trend (current vs previous year)
-  - Top 10 product categories bar chart
-  - US state choropleth map
-  - Customer satisfaction vs delivery time analysis
-- **Bottom Row**: Customer experience metrics
-  - Average delivery time with trend
-  - Review score with star rating
+  - Trend indicators (▲/▼) with green for positive, red for negative outcomes
+  - Two decimal places on all trend percentages
+- **Charts Grid**: 2×2 interactive visualization layout
+  - **Revenue Trend**: solid line (current period) vs dashed line (previous period); $K/$M y-axis labels; grid lines
+  - **Top 10 Categories**: horizontal bar chart sorted descending; blue gradient (light = lower values); $K/$M labels
+  - **Revenue by State**: US choropleth map with blue gradient color scale
+  - **Satisfaction vs Delivery**: bar chart with delivery-time buckets on x-axis and average review score on y-axis
+- **Bottom Row**: 2 cards with uniform height
+  - Average Delivery Time with trend indicator (green = faster delivery)
+  - Review Score: large number, star rating, "Average Review Score" subtitle
 
 ### Technical Features
-- **Real-time Filtering**: All visualizations update automatically
-- **Professional Styling**: Business-ready interface with uniform card heights
-- **Plotly Charts**: Interactive, publication-quality visualizations
-- **Responsive Design**: Adapts to different screen sizes
-- **Error Handling**: Graceful handling of missing data
+- **Plotly Charts**: All visualizations built with Plotly for interactivity
+- **Real-time Filtering**: All charts update automatically on year/month change
+- **Professional Styling**: Clean card-based layout with consistent heights per row
+- **$K/$M Formatting**: Y-axis and bar labels use compact currency notation
+- **Error Handling**: Graceful handling of missing data columns
 
 ## Future Enhancements
 
